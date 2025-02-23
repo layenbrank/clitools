@@ -1,6 +1,8 @@
 use anyhow::Ok;
 use rand::{prelude::IndexedRandom, seq::SliceRandom};
 
+use zxcvbn::zxcvbn;
+
 use crate::opts::GenPassOpts;
 
 const UPPER: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -40,7 +42,12 @@ pub fn process_genpass(opts: &GenPassOpts) -> anyhow::Result<()> {
 
     password.shuffle(&mut rng);
 
-    println!("Generate Password: {}", String::from_utf8(password)?);
+    let password = String::from_utf8(password)?;
+
+    println!("Generate Password: {}", password);
+
+    let strength = zxcvbn(&password, &[]);
+    eprintln!("Password strength: {}", strength.score());
 
     Ok(())
 }
