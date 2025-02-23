@@ -1,5 +1,5 @@
 use clap::Parser;
-use clitools::{process_csv, Opts, SubCommand};
+use clitools::{process_csv, process_genpass, Opts, SubCommand};
 
 fn main() -> anyhow::Result<()> {
     let opts = Opts::parse();
@@ -13,6 +13,10 @@ fn main() -> anyhow::Result<()> {
             };
 
             process_csv(&opts.input, output, opts.format)?;
+        }
+        SubCommand::GenPass(opts) => {
+            process_genpass(&opts)?;
+            // println!("Generate Password: {:?}", opts);
         }
     }
 

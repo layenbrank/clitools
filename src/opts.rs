@@ -13,6 +13,10 @@ pub struct Opts {
 pub enum SubCommand {
     #[command(name = "csv", about = "展示csv内容,或者转换为json格式")]
     Csv(CsvOpts),
+
+    // 随机密码
+    #[command(name = "genpass", about = "生成随机密码")]
+    GenPass(GenPassOpts),
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -37,6 +41,24 @@ pub struct CsvOpts {
 
     #[arg(long, default_value_t = true)]
     pub header: bool,
+}
+
+#[derive(Debug, Parser)]
+pub struct GenPassOpts {
+    #[arg(short, long, default_value_t = 16)]
+    pub len: u8,
+
+    #[arg(long, default_value_t = true)]
+    pub upper: bool,
+
+    #[arg(long, default_value_t = true)]
+    pub lower: bool,
+
+    #[arg(long, default_value_t = true)]
+    pub number: bool,
+
+    #[arg(long, default_value_t = true)]
+    pub symbol: bool,
 }
 
 fn verify_input_file(filename: &str) -> anyhow::Result<String, String> {
