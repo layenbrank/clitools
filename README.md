@@ -81,3 +81,42 @@ cargo nextest 是一个 Rust 增强测试工具。
 ```bash
 cargo install cargo-nextest --locked
 ```
+
+- struct/structure: 结构体
+- enum: 枚举
+- variable: 变量
+- constant: 常量
+- static: 静态变量
+- function: 函数
+- method: 方法
+- generics: 泛型
+- trait: 特征/特质
+- trait bound: 特征约束/trait 约束
+
+
+数据结构-自定义类型
+- 原生类型
+  - array
+  - bool
+  - f32/f64
+  - fn
+  - i8/i16/i32/i64/i128/isize
+  - u8/u16/u32/u64/u128/usize
+  - pointer
+  - reference
+  - slice
+  - str
+  - tuple
+  - unit
+  - never
+- 组合类型
+  - Box<T>
+  - Option<T>
+  - Result<T, E>
+  - Vec<T>
+  - String
+  - HashMap<K, V>/BTreeMap<K, V>
+  - HashSet<T>/BTreeSet<T>
+  - Cell<T>/RefCell<T>
+  - Rc<T>/Arc<T>
+  - Mutex<T>/RwLock<T>
