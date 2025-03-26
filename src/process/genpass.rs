@@ -3,7 +3,7 @@ use rand::{prelude::IndexedRandom, seq::SliceRandom};
 
 use zxcvbn::zxcvbn;
 
-use crate::opts::GenPassOpts;
+use crate::cli::GenPassOpts;
 
 const UPPER: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const LOWER: &[u8] = b"abcdefghijklmnopqrstuvwxyz";

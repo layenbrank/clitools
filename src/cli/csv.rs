@@ -1,23 +1,8 @@
-use std::{fmt, path::Path, str::FromStr};
+use std::{fmt, str::FromStr};
 
 use clap::Parser;
 
-#[derive(Debug, Parser)]
-#[command(name="clitools",version,author,about,long_about=None)]
-pub struct Opts {
-    #[command(subcommand)]
-    pub command: SubCommand,
-}
-
-#[derive(Debug, Parser)]
-pub enum SubCommand {
-    #[command(name = "csv", about = "展示csv内容,或者转换为json格式")]
-    Csv(CsvOpts),
-
-    // 随机密码
-    #[command(name = "genpass", about = "生成随机密码")]
-    GenPass(GenPassOpts),
-}
+use super::verify_input_file;
 
 #[derive(Debug, Clone, Copy)]
 pub enum OutputFormat {
@@ -43,31 +28,6 @@ pub struct CsvOpts {
     pub header: bool,
 }
 
-#[derive(Debug, Parser)]
-pub struct GenPassOpts {
-    #[arg(short, long, default_value_t = 16)]
-    pub len: u8,
-
-    #[arg(long, default_value_t = true)]
-    pub upper: bool,
-
-    #[arg(long, default_value_t = true)]
-    pub lower: bool,
-
-    #[arg(long, default_value_t = true)]
-    pub number: bool,
-
-    #[arg(long, default_value_t = true)]
-    pub symbol: bool,
-}
-
-fn verify_input_file(filename: &str) -> anyhow::Result<String, String> {
-    if Path::new(filename).exists() {
-        Ok(filename.into())
-    } else {
-        Err(format!("文件{}不存在", filename))
-    }
-}
 // fn verify_input_file(filename: &str) -> Result<String,&'static str> {
 //     if Path::new(filename).exists() {
 //         Ok(filename.into())

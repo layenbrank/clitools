@@ -1,5 +1,7 @@
 mod csv;
-mod gen_pass;
+mod genpass;
+mod process_base64;
 
 pub use csv::process_csv;
-pub use gen_pass::process_genpass;
+pub use genpass::process_genpass;
+pub use process_base64::{process_decode, process_encode};
